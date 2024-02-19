@@ -1,0 +1,14 @@
+[
+  {
+    "customer_name": "Arthur",
+    "age":20,
+    "email":"customer.name1@example.com",
+    "phone":"123-456-7890"
+  },
+  {
+    "customer_name": "Customer Name2",
+    "age":20,
+    "email":"customer.name2@example.com",
+    "phone":"231-564-0789"
+  }
+]

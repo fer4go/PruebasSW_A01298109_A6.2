@@ -1,0 +1,26 @@
+[
+  {
+    "hotel_name": "The Hotel",
+    "location": "City",
+    "rooms_qty": 5,
+    "rooms":[
+      {"room":1, "type":"Standard", "reserved":"No"},
+      {"room":2, "type":"Standard", "reserved":"No"},
+      {"room":3, "type":"Standard", "reserved":"No"},
+      {"room":4, "type":"Standard", "reserved":"No"},
+      {"room":5, "type":"Standard", "reserved":"No"},
+    ]
+  },
+  {
+    "hotel_name": "The Grand Hotel",
+    "location": "City",
+    "rooms_qty": 5,
+    "rooms":[
+      {"room":1, "type":"Suite", "reserved":"No"},
+      {"room":2, "type":"Suite", "reserved":"No"},
+      {"room":3, "type":"Standard", "reserved":"No"},
+      {"room":4, "type":"Standard", "reserved":"No"},
+      {"room":5, "type":"Standard", "reserved":"No"},
+    ]
+  }
+]
