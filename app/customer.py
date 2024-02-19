@@ -35,30 +35,36 @@ class Customer:
             self.empty = True
 
 
-    def create_customer(self, file_name):
+    def create_customer(self, file_name="data/customers.json"):
         """
         Builds a json structure with the information and then
         saves it into the customer's json file.
         """
+        new_customer = {}
         if self.empty:
             print("No Data")
         else:
             print("Create")
-            cust_dict = {
+            new_customer = {
                 'customer_name': self.name,
                 'age': self.age,
                 'email': self.email,
                 'phone': self.phone
             }
 
-            # data = appUtils.read_json_file(file_name)
+            file_data = appUtils.read_json_file(file_name)
+            if appUtils.is_customer(file_data, self.email):
+                print("Customer already exists.")
+            else:
+                print("Adding New Customer: " + self.email)
+                appUtils.write_json_file(new_customer, file_name)
 
 
     def delete_customer():
         print("delete")
 
 
-    def display_customer_information(self, file_name, email=None):
+    def display_customer_information(self, email=None, file_name="data/customers.json"):
         """
         Shows the customer's information, if exists, to the console
         Args:
@@ -72,10 +78,11 @@ class Customer:
         else:
             customer_email = email
 
-        data = appUtils.read_json_file(file_name)
+        file_data = appUtils.read_json_file(file_name)
         customer_info = None
-        if data is not None:
-            for customer in data:
+
+        if file_data is not None:
+            for customer in file_data:
                 if customer_email == customer.get('email'):
                     customer_info = customer
 
@@ -86,7 +93,7 @@ class Customer:
                     + "\nEmail: " + customer_info.get('email')
                     + "\nPhone: " + customer_info.get('phone'))
             else:
-                print("Customer Not Found!")
+                print("Customer with email '" + customer_email + "' Not Found!")
 
 
     def modify_customer_information(customer_name):

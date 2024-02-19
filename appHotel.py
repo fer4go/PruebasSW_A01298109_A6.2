@@ -11,9 +11,12 @@ def main():
     """
     print("main")
     #Customer.display_customer_information("Customer Name1")
-    custo3 = Customer("CustomerName3",23,"customer@example.com","321-123-456")
-    custo2 = Customer()
-    custo2.display_customer_information("data/customers.json","customer.name1@example.com")
+    customer = Customer("HP",46,"hp@mail.com","321-123-456")
+    customer.display_customer_information()
+    customer.create_customer()
+
+    customer2 = Customer()
+    customer2.display_customer_information("arthur.doyle@mail.com")
 
 if __name__ == '__main__':
     main()
