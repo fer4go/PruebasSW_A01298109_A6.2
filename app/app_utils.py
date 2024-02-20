@@ -32,14 +32,14 @@ class appUtils:
 
 
     @staticmethod
-    def write_json_file(new_data, file_name):
+    def write_new_entry_json_file(new_entry, file_name):
         """
-        Saves the json information to a file
+        Saves new record into the json file
         Args:
+            new_entry: part of the json to be append
             file_name: path to the file
-            data: json object to upload
         """
-        print("write")
+        print("saving...")
         if not os.path.exists(file_name):
             return False
 
@@ -48,11 +48,30 @@ class appUtils:
                 # load existing data
                 file_data = json.load(file)
                 # join new data
-                file_data.append(new_data)
+                file_data.append(new_entry)
                 # set file position at offset
                 file.seek(0)
                 # convert to json
                 json.dump(file_data, file)
+            except json.decoder.JSONDecodeError:
+                print("Invalid JSON file '" + file_name + "'")
+
+    @staticmethod
+    def write_to_json_file(data, file_name):
+        """
+        Saves new record into the json file
+        Args:
+            data: the json to be saved
+            file_name: path to the file
+        """
+        print("saving...")
+        if not os.path.exists(file_name):
+            return False
+
+        with open(file_name, 'w', encoding='utf8') as jsonfile:
+            try:
+                # convert to json
+                json.dump(data, jsonfile)
             except json.decoder.JSONDecodeError:
                 print("Invalid JSON file '" + file_name + "'")
 
