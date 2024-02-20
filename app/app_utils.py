@@ -18,6 +18,7 @@ class appUtils:
         file_data=''
 
         if not os.path.exists(file_name):
+            print("File '" + file_name + "' not found.")
             return None
 
         with open(file_name, 'r', encoding='utf8') as file:
@@ -86,3 +87,14 @@ class appUtils:
                     customer_flag = True
 
         return customer_flag
+
+    @staticmethod
+    def is_hotel(file_data, hotel_name):
+        hotel_flag = False
+        if file_data is not None:
+            for hotel in file_data:
+                if hotel_name == hotel.get('hotel_name'):
+                    hotel_flag = True
+                    break
+
+        return hotel_flag

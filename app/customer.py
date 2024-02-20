@@ -1,5 +1,6 @@
 """
-    Customer information and methods
+Customer Class
+Contains methods and variables to manage Customer objects
 """
 
 from app.app_utils import appUtils
@@ -71,7 +72,7 @@ class Customer:
         if self.empty:
             print("Nothing to delete")
         else:
-            print("Deleting customer: " + self.email)
+            print("Deleting Customer: " + self.email)
 
             file_data = appUtils.read_json_file(self.file_name)
 
@@ -80,7 +81,7 @@ class Customer:
                     customer for customer in file_data
                     if customer['email'] != self.email
                 ]
-                appUtils.write_to_json_file(file_data, self.file_name)
+                appUtils.write_to_json_file(remaining_customers, self.file_name)
                 self.clear_data()
 
 
@@ -93,7 +94,7 @@ class Customer:
         if self.empty:
             print("No customer information available")
         else:
-            print("Customer Information:")
+            print(">> Customer Information:")
             print("Name: " + self.name
                 + "\nAge: " + str(self.age)
                 + "\nEmail: " + self.email
@@ -109,7 +110,7 @@ class Customer:
             name: the new customer name to update
         """
         print("Modifying Customer information")
-        
+
         if self.empty:
             print("Nothing to update. Please, load a customer")
         else: # there´s data in the object
@@ -160,7 +161,8 @@ class Customer:
                 self.phone = customer_info.get('phone')
                 self.empty = False
             else:
-                print("Customer with email '" + customer_email + "' Not Found!")
+                print("Customer with email '" + customer_email
+                    + "' Not Found at the JSON File!")
 
 
     def clear_data(self):
