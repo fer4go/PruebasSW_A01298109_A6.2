@@ -5,6 +5,7 @@ Contains the methods and variables to manage Hotel objects
 
 from app.app_utils import appUtils
 
+
 class Hotel:
     """
     Class to represent a Hotel in the Hotel app
@@ -34,16 +35,15 @@ class Hotel:
 
         list = []
         for i in range(rooms_qty):
-            list.append({"room":i+101, "reserved": "No"})
+            list.append({"room": i+101, "reserved": "No"})
 
         self.rooms = list
 
-        # to track if the object is created without parameters
+        # to track if the object is created without parameters
         if name:
             self.empty = False
         else:
             self.empty = True
-
 
     def create_hotel(self):
         """
@@ -71,7 +71,6 @@ class Hotel:
                 print(new_hotel)
                 appUtils.write_new_entry_json_file(new_hotel, self.file_name)
 
-
     def display_hotel_information(self):
         """
         prints the hotel information loaded in the object to the user
@@ -81,15 +80,14 @@ class Hotel:
         else:
             print(">> Hotel Information:")
             print("Name: " + self.hotel_name
-                + "\nLocation: " + self.location
-                + "\nNumber of Rooms: " + str(self.rooms_qty)
-                + "\nHotel Type: " + self.type
-                + "\nRooms: "
-            )
+                  + "\nLocation: " + self.location
+                  + "\nNumber of Rooms: " + str(self.rooms_qty)
+                  + "\nHotel Type: " + self.type
+                  + "\nRooms: ")
+
             for room in self.rooms:
                 print("\tRoom: " + str(room['room'])
-                    + " - Reserved: " + room['reserved'])
-
+                      + " - Reserved: " + room['reserved'])
 
     def delete_hotel(self):
         """
@@ -98,7 +96,7 @@ class Hotel:
         if self.empty:
             print("Nothing to delete")
         else:
-            print("Deleting Hotel: "+ self.hotel_name)
+            print("Deleting Hotel: " + self.hotel_name)
 
             file_data = appUtils.read_json_file(self.file_name)
             if file_data is not None:
@@ -109,9 +107,8 @@ class Hotel:
                 appUtils.write_to_json_file(remaning_hotels, self.file_name)
                 self.clear_data()
 
-
-    def modify_hotel_information(self, name=None, location=None, type=None,
-                                rooms_qty=0):
+    def modify_hotel_information(self, name=None, location=None,
+                                 type=None, rooms_qty=0):
         """
         upates the hotel information
         """
@@ -124,7 +121,7 @@ class Hotel:
             if file_data is not None:
                 for hotel in file_data:
                     if hotel['hotel_name'] == self.hotel_name:
-                        #room_list = hotel['rooms']
+                        # room_list = hotel['rooms']
                         self.location = location
                         self.rooms_qty = rooms_qty
                         self.type = type
@@ -143,13 +140,12 @@ class Hotel:
             else:
                 print("Nothing to update.")
 
-
     def get_hotel_information(self, name=None):
         """
         searches for a hotel from the Hotel json file
         """
         print("getting Hotel information...")
-        if name == None:
+        if name is None:
             hotel_name = self.hotel_name
         else:
             hotel_name = name
@@ -171,15 +167,14 @@ class Hotel:
                 self.empty = False
             else:
                 print("Hotel with name '" + hotel_name
-                    + "' Not Found at the JSON File!")
+                      + "' Not Found at the JSON File!")
 
-
-    def reserve_a_room(self, hotelName):
+    def reserve_a_room(self, hotel_name):
         """
         makes a reservation to a room within a hotel
         """
 
-    def cancel_a_reservation(self, hotelName):
+    def cancel_a_reservation(self, hotel_name):
         """
         removes the reservation of a room in a hotel
         """

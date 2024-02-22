@@ -12,10 +12,10 @@ def main():
     """
     print("main")
 
-    customer = Customer("hp@mail.com","HP",46,"321-123-456")
-    customer.get_customer_information()
-    customer.create_customer()
-    customer.display_customer_information()
+    #customer = Customer("hp@mail.com","HP",46,"321-123-456")
+    #customer.get_customer_information()
+    #customer.create_customer()
+    #customer.display_customer_information()
     #customer.get_customer_information()
     #customer.display_customer_information()
     #customer.create_customer()
@@ -33,18 +33,17 @@ def main():
     #customer.get_customer_information("hp@mail.com")
     #customer.display_customer_information()
 ##
-    hotel = Hotel("The Hostel", "the City", 3, "Hostal")
-    hotel.create_hotel()
+    #hotel = Hotel("The Hostel", "the City", 3, "Hostal")
+    #hotel.create_hotel()
     #hotel.get_hotel_information("The Hostal")
-    hotel.display_hotel_information()
+    #hotel.display_hotel_information()
 
-    hotel.modify_hotel_information("The Hostel", "at City", "Hostal", 5)
+    #hotel.modify_hotel_information("The Hostel", "at City", "Hostal", 5)
     #hotel.display_hotel_information()
 
     #hotel.delete_hotel()
-
-
-
+    reserve = Reservation("The Hostel", "bram.stoker@mail.com", 2)
+    reserve.create_reservation()
     #hotel.get_hotel_information("The Hotel")
     #hotel.display_hotel_information()
 

@@ -5,6 +5,7 @@ Contains methods and variables to manage Customer objects
 
 from app.app_utils import appUtils
 
+
 class Customer:
     """
     Class to represent a Customer in the Hotel app
@@ -38,7 +39,6 @@ class Customer:
         else:
             self.empty = True
 
-
     def create_customer(self):
         """
         Builds a json structure with the info from the object and then
@@ -61,8 +61,8 @@ class Customer:
                 print("Customer already exists.")
             else:
                 print("Adding New Customer: " + self.email)
-                appUtils.write_new_entry_json_file(new_customer, self.file_name)
-
+                appUtils.write_new_entry_json_file(
+                                    new_customer, self.file_name)
 
     def delete_customer(self):
         """
@@ -81,9 +81,9 @@ class Customer:
                     customer for customer in file_data
                     if customer['email'] != self.email
                 ]
-                appUtils.write_to_json_file(remaining_customers, self.file_name)
+                appUtils.write_to_json_file(
+                                    remaining_customers, self.file_name)
                 self.clear_data()
-
 
     def display_customer_information(self):
         """
@@ -96,11 +96,10 @@ class Customer:
         else:
             print(">> Customer Information:")
             print("Name: " + self.name
-                + "\nAge: " + str(self.age)
-                + "\nEmail: " + self.email
-                + "\nPhone: " + self.phone
-                + "\n")
-
+                  + "\nAge: " + str(self.age)
+                  + "\nEmail: " + self.email
+                  + "\nPhone: " + self.phone
+                  + "\n")
 
     def modify_customer_information(self, email=None, name=None,
                                     age=None, phone=None):
@@ -113,7 +112,7 @@ class Customer:
 
         if self.empty:
             print("Nothing to update. Please, load a customer")
-        else: # there´s data in the object
+        else:   # there's data in the object, so...
             # serach for the customer to update
             file_data = appUtils.read_json_file(self.file_name)
             if file_data is not None:
@@ -132,7 +131,6 @@ class Customer:
             else:
                 print("Nothing to update.")
 
-
     def get_customer_information(self, email=None):
         """
         Searches for a customer in the Customer file,
@@ -140,7 +138,7 @@ class Customer:
         """
         print("getting Customer Information...")
 
-        if email == None:
+        if email is None:
             customer_email = self.email
         else:
             customer_email = email
@@ -148,22 +146,23 @@ class Customer:
         file_data = appUtils.read_json_file(self.file_name)
         customer_info = None
 
-        if file_data is not None:
+        if file_data is None:
+            print("Not able to read Customer json file...")
+        else:
             for customer in file_data:
                 if customer_email == customer.get('email'):
                     customer_info = customer
 
-            if customer_info is not None:
+            if customer_info is None:
+                print("Customer with email '" + customer_email
+                      + "' Not Found at the JSON File!")
+            else:
                 # save customer into local variables
                 self.name = customer_info.get('customer_name')
                 self.age = customer_info.get('age')
                 self.email = customer_info.get('email')
                 self.phone = customer_info.get('phone')
                 self.empty = False
-            else:
-                print("Customer with email '" + customer_email
-                    + "' Not Found at the JSON File!")
-
 
     def clear_data(self):
         """
