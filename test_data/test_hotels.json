@@ -1,0 +1,1 @@
+[{"hotel_name": "Test Hotel", "location": "City", "rooms_qty": 3, "type": "All Inclusive", "rooms": [{"room": 101, "reserved": "No"}, {"room": 102, "reserved": "No"}, {"room": 103, "reserved": "No"}]}]

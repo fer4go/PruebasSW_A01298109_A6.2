@@ -23,8 +23,7 @@ class Reservation:
         args:
             hotel_name: Hotel's name
             customer_email: customer's email
-            room_number: number of rooms at the hotel
-            type: Hotel's room type
+            room_number: number of the room at the hotel
         """
         # print("reservation object")
         self.hotel_name = hotel_name
@@ -60,7 +59,8 @@ class Reservation:
         else:
             customers_data = appUtils.read_json_file(self.file_customer)
             hotels_data = appUtils.read_json_file(self.file_hotel)
-
+            print(customers_data)
+            print(hotels_data)
             if (appUtils.is_customer(customers_data, self.cust_email)
                  and appUtils.is_hotel(hotels_data, self.hotel_name)
             ):

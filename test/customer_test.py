@@ -1,13 +1,12 @@
 """
 Unit tests for customer class
 """
-from app.customer import Customer
-from app.app_utils import appUtils
-
 import unittest
 import json
 import sys
 sys.path.insert(0, '../PruebasSW_A01298109_A6.2')
+from app.customer import Customer
+from app.app_utils import appUtils
 
 
 class TestCustomerClass(unittest.TestCase):

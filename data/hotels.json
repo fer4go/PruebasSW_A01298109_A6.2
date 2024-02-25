@@ -1,1 +1,1 @@
-[{"hotel_name": "The Grand Hotel", "location": "the City", "rooms_qty": 5, "type": "Boutique", "rooms": [{"room": 1, "reserved": "No"}, {"room": 2, "reserved": "No"}, {"room": 3, "reserved": "No"}, {"room": 4, "reserved": "No"}, {"room": 5, "reserved": "No"}]}, {"hotel_name": "The Hostel", "location": "at City", "rooms_qty": 5, "type": "Hostal", "rooms": [{"room": 101, "reserved": "No"}, {"room": 102, "reserved": "No"}, {"room": 103, "reserved": "No"}]}]
+[]

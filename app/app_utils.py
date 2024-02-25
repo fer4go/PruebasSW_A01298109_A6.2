@@ -85,11 +85,10 @@ class appUtils:
         """
         customer_flag = False
         if file_data is not None:
-            if 'customer_name' in file_data:    
-                for customer in file_data:
-                    if customer_email == customer.get('email'):
-                        customer_flag = True
-                        break
+            for customer in file_data:
+                if customer_email == customer.get('email'):
+                    customer_flag = True
+                    break
         return customer_flag
 
     @staticmethod

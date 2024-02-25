@@ -19,7 +19,7 @@ class Hotel:
 
     file_name = "data/hotels.json"
 
-    def __init__(self, name=None, location=None, rooms_qty=0, type=None):
+    def __init__(self, name=None, location=None, type=None, rooms_qty=0):
         """
         initializes and creates a HOTEL object
         args:
@@ -125,6 +125,12 @@ class Hotel:
                         self.location = location
                         self.rooms_qty = rooms_qty
                         self.type = type
+
+                        list = []
+                        for i in range(int(rooms_qty)):
+                            list.append({"room": i+101, "reserved": "No"})
+                        self.rooms = list
+
                         new_data = {
                             'hotel_name': self.hotel_name,
                             'location': location,
