@@ -26,10 +26,22 @@ class Reservation:
             room_number: number of rooms at the hotel
             type: Hotel's room type
         """
-        print("reservation object")
-        self.hotel = hotel_name
-        self.customer_email = customer_email
+        # print("reservation object")
+        self.hotel_name = hotel_name
+        self.cust_email = customer_email
         self.room_number = room_number
+
+        # empty: to track if the object is created wihtout parameters
+        if hotel_name:
+            self.empty = False
+        else:
+            self.empty = True
+
+    def show_all_reservations(self, file_data):
+        for reservation in file_data:
+            print("Hotel: " + reservation['hotel_name']
+                  + "\nCustomer: " + reservation['customer_email']
+                  + "\nRoom Number: " + reservation['room_number'])
 
     def create_reservation(self):
         """
@@ -43,21 +55,27 @@ class Reservation:
         file_res_data = appUtils.read_json_file(self.file_reservation)
 
         if appUtils.is_reservation(file_res_data,
-                        self.hotel, self.customer_email, self.room_number):
+                        self.hotel_name, self.cust_email, self.room_number):
             print("Reservation already exists.")
         else:
             customers_data = appUtils.read_json_file(self.file_customer)
             hotels_data = appUtils.read_json_file(self.file_hotel)
 
-            if appUtils.is_customer(customers_data, self.customer_email):
-                    #and appUtils.is_hotel(hotels_data, self.hotel_name):
+            if (appUtils.is_customer(customers_data, self.cust_email)
+                 and appUtils.is_hotel(hotels_data, self.hotel_name)
+            ):
                 print("Adding New Reservation: ")
-                #appUtils.write_new_entry_json_file(
-                #                new_customer, self.file_name)
+                new_reservation = {
+                    'hotel_name': self.hotel_name,
+                    'customer_email': self.cust_email,
+                    'room': self.room_number
+                }
+                appUtils.write_new_entry_json_file(
+                                new_reservation, self.file_reservation)
             else:
                 print("Customer name or Hotel name are invalid")
 
-    def cancel_reservation(hotel, customer, room_number):
+    def cancel_reservation(self):
         """
         Removes a reservation for the Hotel app
         Args:
@@ -65,4 +83,46 @@ class Reservation:
             hotel(string): hotel name
             room_number(number): a valid number of the hotel
         """
-        print("hello")
+        print("Removing Reservation")
+        if self.empty:
+            print("No reservation to remove")
+        else:
+            file_data = appUtils.read_json_file(self.file_reservation)
+
+            if file_data is not None:
+                if appUtils.is_reservation(file_data,
+                            self.hotel_name, self.cust_email, self.room_number):
+                    print("Reservation exists.")
+                    print("removing...")
+                    remaining_reservation = [
+                        reservation for reservation in file_data
+                        if (#reservation['hotel_name'] != self.hotel_name
+                            reservation['customer_email'] != self.cust_email
+                            and reservation['room_number'] != self.room_number
+                        )
+                    ]
+                    #appUtils.write_to_json_file(
+                    #                remaining_reservation,
+                    #                self.file_reservation
+                    #)
+                    #self.clear_data()
+                    for res in remaining_reservation:
+                        print("Hotel: " + res['hotel_name'])
+
+                else:
+                    print("Reservation does not exist.")
+                    #show_all_reservations(file_data)
+            else:
+                print("File does not exist.")
+
+
+    def clear_data(self):
+        """
+        clears the object data.
+        To do a clean search or when removing a customer from the file
+        """
+        self.hotel_name = None
+        self.cust_email = None
+        self.room_number = 0
+        # empty: to track if the object is created wihtout parameters
+        self.empty = True

@@ -85,10 +85,11 @@ class appUtils:
         """
         customer_flag = False
         if file_data is not None:
-            for customer in file_data:
-                if customer_email == customer.get('email'):
-                    customer_flag = True
-                    break
+            if 'customer_name' in file_data:    
+                for customer in file_data:
+                    if customer_email == customer.get('email'):
+                        customer_flag = True
+                        break
         return customer_flag
 
     @staticmethod
@@ -109,13 +110,14 @@ class appUtils:
         """
         validate if the reservation exists in the reservation json file
         """
-        reservation_flag = True
+        reservation_flag = False
         if file_data is not None:
             for reservation in file_data:
-                print(reservation.get('hotel_name'))
-                #if hotel == reservation.get('hotel_name')
-                    #    and customer == reservation.get('customer')
-                    #    and room_number == reservation.get('room_number')
-                #    reservation_flag = True
-                #    break
+                if (hotel == reservation.get('hotel_name')
+                    and customer == reservation.get('customer_email')
+                    and room_number == (reservation.get('room_number'))
+                ):
+                    print('reserved >> room_number:' + str(reservation.get('room_number')))
+                    reservation_flag = True
+
         return reservation_flag

@@ -57,11 +57,17 @@ class Customer:
             }
 
             file_data = appUtils.read_json_file(self.file_name)
-            if appUtils.is_customer(file_data, self.email):
-                print("Customer already exists.")
-            else:
-                print("Adding New Customer: " + self.email)
+
+            if len(file_data) < 1:
+                print("Adding First Customer: " + self.email)
                 appUtils.write_new_entry_json_file(
+                                new_customer, self.file_name)
+            else:
+                if appUtils.is_customer(file_data, self.email):
+                    print("Customer already exists.")
+                else:
+                    print("Adding New Customer: " + self.email)
+                    appUtils.write_new_entry_json_file(
                                     new_customer, self.file_name)
 
     def delete_customer(self):

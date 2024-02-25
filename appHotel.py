@@ -12,10 +12,10 @@ def main():
     """
     print("main")
 
-    #customer = Customer("hp@mail.com","HP",46,"321-123-456")
+    customer = Customer("hp2@mail.com","HP",46,"321-123-456")
     #customer.get_customer_information()
-    #customer.create_customer()
-    #customer.display_customer_information()
+    customer.create_customer()
+    customer.display_customer_information()
     #customer.get_customer_information()
     #customer.display_customer_information()
     #customer.create_customer()
@@ -42,9 +42,10 @@ def main():
     #hotel.display_hotel_information()
 
     #hotel.delete_hotel()
-    reserve = Reservation("The Hostel", "bram.stoker@mail.com", 2)
-    reserve.create_reservation()
-    #hotel.get_hotel_information("The Hotel")
+    #reserve = Reservation("The Hostel", "bram.stoker@mail.com", 2)
+    #reserve.create_reservation()
+    #reserve.cancel_reservation()
+    # hotel.show_all_reservations()
     #hotel.display_hotel_information()
 
 if __name__ == '__main__':
